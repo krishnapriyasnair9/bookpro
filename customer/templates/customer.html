@@ -1,0 +1,19 @@
+{%extends 'cbase.html'%}
+{%block body_block%}
+<div class="row">
+        {%for book in books%}
+        <div class="col-4 at-2">
+            <div class="card" style="width: 18rem;">
+                <img src="{{book.image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Book Name:{{book.book_name}}</h5>
+                    <p class="card-text">Author:{{book.author}}</p>
+                     <p class="card-text">Amount:{{book.amount}}</p>
+                     <p class="card-text">Copies:{{book.copies}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+{%endblock%}
