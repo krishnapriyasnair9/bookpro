@@ -1,0 +1,49 @@
+{%extends 'cbase.html'%}
+{%block body_block%}
+<div class="row">
+    <div class="col-8">
+        {%for cart in carts%}
+<div class="row empty-2">
+    <div class="col-2 p-2">
+        {%if cart.product.image%}
+        <img src="{{cart.product.image.url}}" alt="" height="200px" width="100%">
+        {%endif%}
+    </div>
+    <div class="col-4 left-0 width=100% p-2">
+        <div class="card" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{cart.product.book_name}}</li>
+                <li class="list-group-item">{{cart.product.author}}</li>
+                <li class="list-group-item">{{cart.product.amount}}</li>
+                <li class="list-group-item">{{cart.product.copies}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-4">
+        {%if cart.status != "cancelled"%}
+        <a href="{%url 'remove' cart.id%}" class="btn btn-danger">Remove</a>
+        <a href="{%url 'ordercreate' cart.id cart.product.id%}" class="btn btn-primary">Buy Now</a>
+    </div>
+    {%else%}
+    <p class="border border-danger text-center">{{cart.status}}</p>
+    {%endif%}
+</div>
+
+{%endfor%}
+    </div>
+    <div class="col-4">
+        <div class="card">
+  <div class="card-header">
+    price details
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <strong>Total:{{total}}</strong>
+  </div>
+</div>
+    </div>
+</div>
+
+
+{%endblock%}

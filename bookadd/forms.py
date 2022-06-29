@@ -1,5 +1,6 @@
 from django import forms
 from bookadd.models import Books
+from customer.models import Orders
 """class BookForm(forms.Form):
     book_name = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control"}))
     author = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control"}))
@@ -27,4 +28,22 @@ class BookForm(forms.ModelForm):
             "image":forms.FileInput(attrs={"class":"form-control"}),
 
         }
+class OrderEditForm(forms.ModelForm):
+    options = (
+        ("orderplaced", "orderplaced"),
+        ("dispatched", "dispatched"),
+        ("in_transit", "in_transit"),
+        ("delivered", "delivered")
+
+
+    )
+    status=forms.ChoiceField(choices=options,widget=forms.Select(attrs={"class":"from-select"}))
+    class Meta:
+        model=Orders
+        fields=["expected_delivary_date","status"]
+        widgets={
+            "expected_delivary_date":forms.DateInput(attrs={"class":"form-control","type":"date"}),
+            "status":forms.Select(attrs={"class":"form-select"})
+        }
+
 

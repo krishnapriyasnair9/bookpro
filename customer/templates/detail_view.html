@@ -1,0 +1,33 @@
+{%extends 'cbase.html'%}
+{%block body_block%}
+<div class="row mt-5">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class="card" style="width: 18rem;">
+
+            <img src="{{book.image.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Book Name:{{book.book_name}}</h5>
+                <p class="card-text">Author:{{book.author}}</p>
+                <p class="card-text">Amount:{{book.amount}}</p>
+                <p class="card-text">Copies:{{book.copies}}</p>
+
+            </div>
+            <a href="{%url 'addtocart' book.id%}" class="btn btn-primary">AddToCart</a>
+        </div>
+    </div>
+
+</div>
+{%for review in book.m_reviews%}
+<div class="card">
+  <div class="card-header mt-5">
+    rating:{{review.rating}}
+  </div>
+  <div class="card-body">
+
+    <p class="card-text">{{review.comment}}</p>
+    <p>posted_by:{{review.posted_by}}</p>
+  </div>
+</div>
+{%endfor%}
+{%endblock%}

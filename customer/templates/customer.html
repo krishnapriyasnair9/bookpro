@@ -1,19 +1,40 @@
 {%extends 'cbase.html'%}
 {%block body_block%}
+{% if messages %}
+
+    {% for message in messages %}
+    <div class="row">
+        <div class="col-2"></div>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <div class="col-4 bg-success text-white">
+            {{message}}
+        </div>
+        {%endif%}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="col-4 bg-danger text-white">
+            {{message}}
+        </div>
+
+        {%endif%}
+        <div class="col-2"></div>
+    </div>
+    {% endfor %}
+
+{% endif %}
 <div class="row">
-        {%for book in books%}
-        <div class="col-4 at-2">
-            <div class="card" style="width: 18rem;">
-                <img src="{{book.image.url}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Book Name:{{book.book_name}}</h5>
-                    <p class="card-text">Author:{{book.author}}</p>
-                     <p class="card-text">Amount:{{book.amount}}</p>
-                     <p class="card-text">Copies:{{book.copies}}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
+    {%for book in books%}
+    <div class="col-4 at-2">
+        <div class="card" style="width: 18rem;">
+            <img src="{{book.image.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Book Name:{{book.book_name}}</h5>
+                <p class="card-text">Author:{{book.author}}</p>
+                <p class="card-text">Amount:{{book.amount}}</p>
+                <p class="card-text">Copies:{{book.copies}}</p>
+                <a href="{%url 'detailview' book.id%}" class="btn btn-primary">View</a>
             </div>
         </div>
-        {%endfor%}
     </div>
+    {%endfor%}
+</div>
 {%endblock%}

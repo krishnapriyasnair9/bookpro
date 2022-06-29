@@ -26,6 +26,9 @@ urlpatterns = [
     path("books/<int:id>",views.BookDetailView.as_view(),name="bookdetails"),
     path("books/remove/<int:id>",views.BookDelete.as_view(),name="bookdelete"),
     path("books/change/<int:id>",views.ChangeBook.as_view(),name="changebook"),
-    path("customer/",include("customer.urls"))
-
+    path("customer/",include("customer.urls")),
+    path("owner/dashboard",views.DashBoardView.as_view(),name="dashboard"),
+    path("owner/order/<int:id>",views.OrderDetailView.as_view(),name="orderdetail"),
+    path("order/change/<int:id>",views.OrderChangeView.as_view(),name="updateorder")
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

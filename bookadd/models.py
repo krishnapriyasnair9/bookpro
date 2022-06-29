@@ -1,4 +1,5 @@
 from django.db import models
+
 class Books(models.Model):
     book_name=models.CharField(max_length=120,unique=True)
     author=models.CharField(max_length=120)
@@ -7,6 +8,12 @@ class Books(models.Model):
     image=models.ImageField(upload_to="images",null=True)
     def __str__(self):
         return self.book_name
+    @property
+    def m_reviews(self):
+        return self.products.all()
+
+
+
 
 
 #ref=modelname(property=value,property=value,property=value)
